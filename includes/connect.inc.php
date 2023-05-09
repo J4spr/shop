@@ -1,5 +1,5 @@
 <?php
-$connection = new mysqli("localhost", "root", "", "store");
+$connection = new mysqli("localhost", "root", "", "jasper");
 
 if ($connection->connect_errno) {
     echo "Er is iets fout gegaan met het verbinden van database.

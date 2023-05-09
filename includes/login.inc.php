@@ -36,4 +36,6 @@ if ($result["admin"] === 1) {
     return;
 }
 
+session_start();
+$_SESSION["user"] = $result["id"];
 header('Location: ../public_html/index.php?success=loggedin');

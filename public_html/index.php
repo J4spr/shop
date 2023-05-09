@@ -1,5 +1,6 @@
 <?php
 include '../includes/connect.inc.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,8 +15,17 @@ include '../includes/connect.inc.php';
 <body>
     <div>
         <h1>Index</h1>
-        <a href="login.php">Login</a>
-        <a href="register.php">Register</a>
+        <?php
+        if(!isset($_SESSION["user"])){
+            echo '
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+            ';
+        } else{
+            echo '<a href="../includes/logout.inc.php">Logout</a>';
+        }
+        ?>    
+    
     </div>
 
     <?php
@@ -25,8 +35,8 @@ include '../includes/connect.inc.php';
 
     $resultSet = $statement->get_result();
 
-    if ($resultSet->num_rows < 0) {
-        echo '<p>No products in the store :/</p>';
+    if ($resultSet->num_rows <= 0) {
+        echo '<p>No products in the store :/ ^-^</p>';
         return;
     }
 
