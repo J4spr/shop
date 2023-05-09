@@ -8,6 +8,7 @@ include '../../includes/connect.inc.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/admin/tables.css">
     <title>Admin - Users</title>
 </head>
 
@@ -32,8 +33,10 @@ include '../../includes/connect.inc.php';
                     <td>' . $result["username"] . '</td>
                     <td>' . $result["email"] . '</td>
                     <td>' . $result["admin"] . '</td>
-                    <td><a href="./edituser.php?user=' . $result["id"] . '">Edit User</a></td>
-                    <td><a href="../../includes/removeuser.inc.php?user=' . $result["id"] . '">Remove User</a></td>
+                    <td class="edit">
+                        <a href="./edituser.php?user=' . $result["id"] . '">Edit User</a>
+                        <a href="../../includes/removeuser.inc.php?user=' . $result["id"] . '">Remove User</a>
+                    </td>
                 </tr>
             ';
         }

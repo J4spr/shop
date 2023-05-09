@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #262839;
+  color: #ffffff;
+}
+
+.content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.content a {
+  text-decoration: none;
+  color: #ffffff;
+}
+

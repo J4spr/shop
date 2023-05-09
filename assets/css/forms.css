@@ -1,0 +1,53 @@
+body {
+  background-color: #262839;
+  color: #ffffff;
+}
+
+.form-wrapper {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper form {
+  display: flex;
+  padding: 30px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  background-color: #15172b;
+}
+
+.form-wrapper form .input-wrapper {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.form-wrapper form .input-wrapper input {
+  display: flex;
+  background-color: #303245;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  outline: none;
+}
+
+.form-wrapper form input[type="submit"] {
+  padding: 3px 18px;
+}
+
+
+/* .form-wrapper form .input-wrapper select{
+display: flex;
+  background-color: #303245;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  outline: none;
+} */

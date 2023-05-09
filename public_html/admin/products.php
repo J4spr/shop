@@ -8,6 +8,7 @@ include '../../includes/connect.inc.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/admin/tables.css">
     <title>Admin index</title>
 </head>
 
@@ -34,9 +35,12 @@ include '../../includes/connect.inc.php';
                 <td>' . $result["id"] . '</td>
                 <td>' . $result["productname"] . '</td>
                 <td>' . $result["image"] . '</td>
+                <td>' . $result["price"] . '</td>
                 <td>' . $result["description"] . '</td>
-                <td><a href="./editproduct.php?product=' . $result["id"] . '">Edit product</a></td>
-                <td><a href="../../includes/removeproduct.inc.php?product=' . $result["id"] . '">Remove Product</a></td>
+                <td class="edit">
+                    <a href="./editproduct.php?product=' . $result["id"] . '">Edit product</a>
+                    <a href="../../includes/removeproduct.inc.php?product=' . $result["id"] . '">Remove Product</a>
+                </td>
             </tr>
             ';
         }   

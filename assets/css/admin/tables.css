@@ -1,0 +1,33 @@
+body {
+  background-color: #262839;
+  color: #ffffff;
+}
+
+table {
+  display: flex;
+  gap: 20px;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+table a {
+  text-decoration: none;
+}
+
+table tr td {
+  padding-right: 50px;
+}
+
+table tr td:last-child {
+  padding-right: 0;
+}
+
+table tr th {
+  padding-bottom: 20px;
+}
+
+table tr>.edit {
+  display: flex;
+  gap: 10px;
+}

@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #262839;
+  color: #ffffff;
+}
+.container {
+  padding: 20px 70px 60px 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation .logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navigation .links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navigation .links ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.navigation .links ul li {
+  list-style-type: none;
+}
+
+.navigation .account {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+.products {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+.products .product {
+  background-color: #202130;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.products .product .bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
