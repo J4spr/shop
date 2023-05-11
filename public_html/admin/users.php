@@ -13,21 +13,29 @@ include '../../includes/connect.inc.php';
 </head>
 
 <body>
-    <table style="text-align:left;">
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Admin</th>
-        </tr>
-        <?php
-        $sql = 'SELECT * FROM users';
-        $statement = $connection->prepare($sql);
-        $statement->execute();
+    <div class="container">
+        <div class="navigation">
+        </div>
+        <div class="account">
+            <a href="../../includes/logout.inc.php">Logout</a>
+        </div>
 
-        $resultSet = $statement->get_result();
-        foreach ($resultSet as $result) {
-            echo '
+            <table style="text-align:left;">
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Admin</th>
+                </tr>
+                <?php
+                $sql = 'SELECT * FROM users';
+                $statement = $connection->prepare($sql);
+                $statement->execute();
+
+                $resultSet = $statement->get_result();
+                echo '<a href="./adduser.php">Add User';
+                foreach ($resultSet as $result) {
+                    echo '
                 <tr>
                     <td>' . $result["id"] . '</td>
                     <td>' . $result["username"] . '</td>
@@ -39,9 +47,9 @@ include '../../includes/connect.inc.php';
                     </td>
                 </tr>
             ';
-        }
-        ?>
-    </table>
+                }
+                ?>
+            </table>
 </body>
 
 </html>
