@@ -10,7 +10,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/index.css">
-    <!-- <link rel="stylesheet" href="../assets/css/footer.css"> -->
+    <link rel="stylesheet" href="../assets/css/footer.css">
     <title>Index</title>
 </head>
 
@@ -30,8 +30,8 @@ session_start();
                 <?php
                 if (!isset($_SESSION["user"])) {
                     echo '
-                    <a href="login.php">Login</a>
-                    <a href="register.php">Register</a>
+                    <a href="./login.php">Login</a>
+                    <a href="./register.php">Register</a>
                     ';
                 } else {
                     echo '
@@ -62,7 +62,7 @@ session_start();
                         <img src="' . $result["image"] . '" alt="">
                         <p>' . $result["description"] . '</p>
                         <p>' . $result["price"] . '</p>
-                        <form action="index.php" method="post">
+                        <form action="../" method="post">
                             <input type="submit" value="Add to cart">
                         </form>
                     </div>
@@ -72,7 +72,7 @@ session_start();
             ?>
             <div class="product">
                 <h3>Minecaft</h3>
-                <img src="https://i.imgur.com/CCHWBSI.png" alt="">
+                <img src="https://i.imgur.com/f53T9TK.png" alt="">
                 <div class="bottom">
                     <p></p>
                     <p>€30</p>

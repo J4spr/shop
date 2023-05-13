@@ -20,10 +20,7 @@
             <div class="input-wrapper">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
-                <label for="showpasswordbutton">show password</label>
-                <input type="checkbox" onclick="showPasswd()" name="showpassword" id="showpasswdbutton">
             </div>
-
             <input type="submit" value="login">
         </form>
     </div>
