@@ -13,7 +13,7 @@ include '../../includes/connect.inc.php';
 </head>
 
 <body>
-    <a href=""></a>
+    <a href="./addproduct.php">Add product</a>
     <table style="text-align:left;">
         <tr>
             <th>ID</th>
