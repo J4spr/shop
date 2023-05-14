@@ -49,12 +49,11 @@ session_start();
             $statement->execute();
 
             $resultSet = $statement->get_result();
-
             if ($resultSet->num_rows <= 0) {
-                echo '<p>No products in the store :/ ^-^</p>';
+                echo '<p>No products in the store :/</p>';
                 return;
             }
-
+            
             foreach ($resultSet as $result) {
                 echo '
                     <div class="product">
@@ -62,7 +61,7 @@ session_start();
                         <img src="' . $result["image"] . '" alt="">
                         <p>' . $result["description"] . '</p>
                         <p>' . $result["price"] . '</p>
-                        <form action="../" method="post">
+                        <form action="../includes/cart.inc.php" method="post">
                             <input type="submit" value="Add to cart">
                         </form>
                     </div>
@@ -70,9 +69,9 @@ session_start();
             }
 
             ?>
-            <div class="product">
+            <!-- <div class="product">
                 <h3>Minecaft</h3>
-                <img src="https://i.imgur.com/f53T9TK.png" alt="">
+                <img src="https://pbs.twimg.com/media/FwGIEQ4WcAAigql.jpg" alt="">
                 <div class="bottom">
                     <p></p>
                     <p>€30</p>
@@ -80,7 +79,7 @@ session_start();
                         <input type="submit" value="Add to cart">
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>

@@ -16,7 +16,6 @@ include './connect.inc.php';
 //         $target_file = $target_dir . basename($fileName);
 //         move_uploaded_file($fileTmp, $target_file);
         $sql = 'INSERT INTO products (productname, price, image, description) VALUES (?, ?, ?, ?)';
-        var_dump($sql);
         $statement = $connection->prepare($sql);
         $statement->bind_param("ssss", $_POST["productname"], $_POST["price"], $_POST["image"], $_POST["description"]);
         $statement->execute();
