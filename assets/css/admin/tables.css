@@ -3,12 +3,13 @@ body {
   color: #ffffff;
 }
 
-table {
+.content-wrapper {
   display: flex;
   gap: 20px;
   height: 100vh;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 table a {

@@ -20,6 +20,7 @@ include '../../includes/connect.inc.php';
             <a href="../../includes/logout.inc.php">Logout</a>
         </div>
 
+        <div class="content-wrapper">
             <table style="text-align:left;">
                 <tr>
                     <th>ID</th>
@@ -28,28 +29,30 @@ include '../../includes/connect.inc.php';
                     <th>Admin</th>
                 </tr>
                 <?php
-                $sql = 'SELECT * FROM users';
-                $statement = $connection->prepare($sql);
-                $statement->execute();
-
-                $resultSet = $statement->get_result();
-                echo '<a href="./adduser.php">Add User';
-                foreach ($resultSet as $result) {
-                    echo '
+            $sql = 'SELECT * FROM users';
+            $statement = $connection->prepare($sql);
+            $statement->execute();
+            
+            $resultSet = $statement->get_result();
+            foreach ($resultSet as $result) {
+                echo '
                 <tr>
-                    <td>' . $result["id"] . '</td>
-                    <td>' . $result["username"] . '</td>
-                    <td>' . $result["email"] . '</td>
-                    <td>' . $result["admin"] . '</td>
-                    <td class="edit">
-                        <a href="./edituser.php?user=' . $result["id"] . '">Edit User</a>
-                        <a href="../../includes/removeuser.inc.php?user=' . $result["id"] . '">Remove User</a>
-                    </td>
+                <td>' . $result["id"] . '</td>
+                <td>' . $result["username"] . '</td>
+                <td>' . $result["email"] . '</td>
+                <td>' . $result["admin"] . '</td>
+                <td class="edit">
+                <a href="./edituser.php?user=' . $result["id"] . '">Edit User</a>
+                <a href="../../includes/removeuser.inc.php?user=' . $result["id"] . '">Remove User</a>
+                </td>
                 </tr>
-            ';
-                }
-                ?>
-            </table>
-</body>
+                ';
+            }
+            ?>
+        </table>
+        <a href="./adduser.php" style="margin-top: 10px;">Add User</a>
+    </div>
 
-</html>
+    </body>
+    
+    </html>

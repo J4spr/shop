@@ -10,6 +10,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/nav.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
     <title>Index</title>
 </head>
@@ -53,7 +54,7 @@ session_start();
                 echo '<p>No products in the store :/</p>';
                 return;
             }
-            
+
             foreach ($resultSet as $result) {
                 echo '
                     <div class="product">

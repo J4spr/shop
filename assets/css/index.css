@@ -17,41 +17,7 @@ body {
   gap: 50px;
 }
 
-.navigation {
-  display: flex;
-  justify-content: space-between;
-}
 
-.navigation .logo {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.navigation .links {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.navigation .links ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-.navigation .links ul li {
-  list-style-type: none;
-}
-
-.navigation .account {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 20px;
-}
 .products {
   display: flex;
   flex-direction: row;
