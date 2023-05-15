@@ -1,0 +1,45 @@
+.container {
+  padding: 20px 70px 60px 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.navigation {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation .logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navigation .links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation .links ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.navigation .links ul li {
+  list-style-type: none;
+}
+
+.navigation .account {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
