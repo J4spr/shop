@@ -21,10 +21,10 @@ session_start();
                 <h1>Index</h1> <!-- add a link to "logo" -->
             </div>
             <div class="links">
-                <ul>
-                    <li>Links 1</li> <!-- make links -->
+                <!-- <ul>
+                    <li>Links 1</li> <!-- make links 
                     <li>Links 2</li>
-                </ul>
+                </ul> -->
             </div>
             <div class="account">
                 <?php
