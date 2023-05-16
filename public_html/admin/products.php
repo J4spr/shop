@@ -9,7 +9,7 @@ include '../../includes/connect.inc.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/admin/tables.css">
-    <link rel="stylesheet" href="../../assets/css/nav.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
     <title>Admin index</title>
 </head>
 
@@ -57,6 +57,10 @@ include '../../includes/connect.inc.php';
             <a href="./addproduct.php" style="margin-top: 10px;">Add product</a>
         </div>
     </div>
+    <footer>
+        <p>© 2023 - All rights reserved</p>
+        <p>Created by: <a href="https://github.com/J4spr" target="blank">Jasper</a></p>
+    </footer>
 </body>
 
 </html>

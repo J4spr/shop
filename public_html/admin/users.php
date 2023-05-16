@@ -10,6 +10,7 @@ include '../../includes/connect.inc.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/admin/tables.css">
     <link rel="stylesheet" href="../../assets/css/nav.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
     <title>Admin - Users</title>
 </head>
 
@@ -38,11 +39,11 @@ include '../../includes/connect.inc.php';
                 foreach ($resultSet as $result) {
                     echo '
                     <tr>
-                    <td>' . $result["id"] . '</td>
-                    <td>' . $result["username"] . '</td>
-                    <td>' . $result["email"] . '</td>
-                    <td>' . $result["admin"] . '</td>
-                    <td class="edit">
+                        <td>' . $result["id"] . '</td>
+                        <td>' . $result["username"] . '</td>
+                        <td>' . $result["email"] . '</td>
+                        <td>' . $result["admin"] . '</td>
+                        <td class="edit">
                     <a href="./edituser.php?user=' . $result["id"] . '">Edit User</a>
                         <a href="../../includes/removeuser.inc.php?user=' . $result["id"] . '">Remove User</a>
                     </td>
@@ -53,6 +54,11 @@ include '../../includes/connect.inc.php';
             </table>
             <a href="./adduser.php">Add User
         </div>
+    </div>
+    <footer>
+        <p>© 2023 - All rights reserved</p>
+        <p>Created by: <a href="https://github.com/J4spr" target="blank">Jasper</a></p>
+    </footer>
 </body>
 
 </html>

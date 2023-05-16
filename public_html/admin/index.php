@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +20,7 @@
         <div class="content">
             <a href="./users.php">Users</a>
             <a href="./products.php">Products</a>
+            <a href="./orders.php">Orders</a>
         </div>
         <footer>
             <p>© 2023 - All rights reserved</p>
