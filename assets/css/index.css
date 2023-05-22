@@ -17,9 +17,7 @@ body {
   gap: 50px;
 }
 
-<<<<<<< HEAD
 
-=======
 .navigation {
   flex-direction: row;
   display: flex;
@@ -58,7 +56,6 @@ body {
   align-items: center;
   gap: 20px;
 }
->>>>>>> 9f6016367a68fbb1db9f9ebb84b76421c1270d0c
 .products {
   display: flex;
   flex-direction: row;

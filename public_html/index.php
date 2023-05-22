@@ -38,6 +38,7 @@ session_start();
                 } else {
                     echo '
                     <a href="../includes/logout.inc.php">Logout</a>
+                    <a href="./cart.php">Cart</a>
                     ';
                 }
                 ?>
@@ -59,10 +60,10 @@ session_start();
             foreach ($resultSet as $result) {
                 echo '
                     <div class="product">
-                        <h3>' . $result["productname"] . '</h3>
+                        <p>'        . $result["productname"] . '</p>
                         <img src="' . $result["image"] . '" alt="">
-                        <p>' . $result["description"] . '</p>
-                        <p>' . $result["price"] . '</p>
+                        <p>'        . $result["description"] . '</p>
+                        <p>'        . $result["price"] . '</p>
                         <form action="../includes/cart.inc.php" method="post">
                             <input type="submit" value="Add to cart">
                         </form>
