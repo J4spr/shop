@@ -33,6 +33,11 @@
   list-style-type: none;
 }
 
+/* .navigation .links ul li a img{
+  width: 20px;
+  height: 20px;
+} */
+
 .navigation .account {
   flex: 1;
   display: flex;

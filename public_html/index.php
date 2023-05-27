@@ -7,12 +7,14 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="font-src 'self' https://kit.fontawesome.com/"> -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="../assets/css/nav.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/nav.css">
+    <script src="https://kit.fontawesome.com/ae9ca7023f.js" crossorigin="anonymous"></script>
     <title>Index</title>
 </head>
 
@@ -23,10 +25,10 @@ session_start();
                 <h1>Index</h1> <!-- add a link to "logo" -->
             </div>
             <div class="links">
-                <!-- <ul>
-                    <li>Links 1</li> <!-- make links 
-                    <li>Links 2</li>
-                </ul> -->
+                <ul>
+                    <li><a href="./cart.php"><i class="fa-solid fa-cart-shopping"></i></a></li> <!-- make links-->
+                    <!-- <li>Links 2</li> -->
+                </ul>
             </div>
             <div class="account">
                 <?php
@@ -38,7 +40,7 @@ session_start();
                 } else {
                     echo '
                     <a href="../includes/logout.inc.php">Logout</a>
-                    <a href="./cart.php">Cart</a>
+                    <a href="../includes/addtocart.inc.php">Cart</a>
                     ';
                 }
                 ?>

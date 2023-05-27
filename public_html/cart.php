@@ -48,11 +48,15 @@ if (!(isset($_SESSION["user"]))) {
             </div>
         </div>
         <?php
-        $sql = 'SELECT cart FROM users WHERE id = ?';
+        $sql = 'SELECT * FROM orders WHERE id = ?';
         $statement = $connection->prepare($sql);
-
-        $statement->bind_param('i', $_SESSION["user"]);
-        $statement->execute();
+        if (!$statement) {
+            echo "Error preparing statement: " . $connection->error;
+        } else {
+            $statement->bind_param('i', $id);
+            $statement->execute();
+            // ...
+        }
 
         $resultSet = $statement->get_result();
         $result = $resultSet->fetch_assoc();
@@ -60,8 +64,8 @@ if (!(isset($_SESSION["user"]))) {
         if ($result["cart"] === "") {
             echo 'No products';
         } else {
-             $products = explode(",", $result["cart"]);
-             $productsCount = array_count_values($products);
+            $products = explode(",", $result["cart"]);
+            $productsCount = array_count_values($products);
 
             foreach ($productsCount as $product => $quantity) {
                 $sql = 'SELECT * FROM products WHERE id = ?';
