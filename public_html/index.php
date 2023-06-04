@@ -22,7 +22,7 @@ session_start();
     <div class="container">
         <div class="navigation">
             <div class="logo">
-                <h1>Index</h1> <!-- add a link to "logo" -->
+                <h1><a href="./index.php">Index</a></h1> <!-- add a link to "logo" -->
             </div>
             <div class="links">
                 <ul>
@@ -39,8 +39,7 @@ session_start();
                     ';
                 } else {
                     echo '
-                    <a href="../includes/logout.inc.php">Logout</a>
-                    <a href="../includes/addtocart.inc.php">Cart</a>
+                    <a href="../includes/logout.inc.php">Logout</a>t
                     ';
                 }
                 ?>
@@ -66,8 +65,9 @@ session_start();
                         <img src="' . $result["image"] . '" alt="">
                         <p>'        . $result["description"] . '</p>
                         <p>'        . $result["price"] . '</p>
-                        <form action="../includes/cart.inc.php" method="post">
-                            <input type="submit" value="Add to cart">
+                        <form action="../includes/addtocart.inc.php" method="post">
+                            <input type="hidden" name="productid" value="' . $result["id"] . '">
+                            <input type="submit" name="add-to-cart" value="Add to cart">
                         </form>
                     </div>
                 ';

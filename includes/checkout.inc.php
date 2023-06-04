@@ -1,113 +1,68 @@
-<?php
-require '../../libraries/fpdf/fpdf.php';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    <?php
+session_start();
 include './connect.inc.php';
+include './pdf.inc.php';
 
-function createPdfFile($userId, $orderId)
-{
-    global $connection;
+$user_id = $_SESSION['user'];
+// if (!(isset($_POST['checkout']))) {
+//     $user_id = $_SESSION['user'];
+// }
 
-    $pdf = new FPDF();
-    $pdf->AddPage();
+// Retrieve the cart items for the current user
+$sql = "SELECT * FROM users WHERE id = ?";
+$statement = $connection->prepare($sql);
+$statement->bind_param("i", $user_id);
+$statement->execute();
+$resultSet = $statement->get_result();
+$userResult = $resultSet->fetch_assoc();
 
-    $pdf->SetFont('Arial', '', 16);
-    $pdf->Cell(40, 10, 'Order ID:');
-    $pdf->Cell(40, 10, $orderId);
-
-    $pdf_file = 'order_' . $orderId . '.pdf';
-    $pdf->Output('F', $pdf_file);
-
-    $pdf_data = file_get_contents('order-' . $orderId . '.pdf');
-    $pdf_data = mysqli_real_escape_string($connection, $pdf_data);
-
-    $sql = "INSERT INTO orders (pdf) VALUES ('$pdf_data')";
-    if ($connection->query($sql) === TRUE) {
-        echo "PDF file saved to database.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $connection->error;
-    }
-
-    echo ' <a href="' . $pdf_file . '">Download PDF</a>';
+if ($resultSet->num_rows === 0) {
+    echo 'No products in the cart :/';
+    return;
 }
 
-function generateInvoicePDF($method, $customerName, $address, $invoiceNumber, $invoiceDate, $items, $subtotal, $tax, $total)
-{
-    global $connection;
+$order_id = uniqid("ORDER_");
+$total_price = 0;
 
-    define('EURO', chr(128));
+$productIdArray = explode(",", $userResult["cart"]);
+$productsCount = array_count_values($productIdArray);
 
-    $pdf = new FPDF();
-    $pdf->AddPage();
+$products_info = array();
+$total = 0;
 
-    $pdf->SetFont('Helvetica', 'B', 16);
-    $pdf->Cell(190, 10, 'INVOICE', 0, 1, 'C');
+foreach ($productsCount as $product => $quantity) {
+    $sql = "SELECT * FROM products WHERE id = ?";
+    $statement = $connection->prepare($sql);
+    $statement->bind_param("i", $product);
+    $statement->execute();
+    $resultSet = $statement->get_result();
+    $result = $resultSet->fetch_assoc();
 
-    $pdf->SetFont('Helvetica', '', 12);
-    $pdf->Cell(40, 10, 'Customer Name:', 0, 0);
-    $pdf->Cell(100, 10, $customerName, 0, 1);
+    $product_info = array(
+        "id" => $product,
+        "name" => $result["productname"],
+        "image" => $result["image"],
+        "price" => $result["price"],
+        "quantity" => $quantity
+    );
 
-    $pdf->Cell(40, 10, 'Address:', 0, 0);
-    $pdf->Cell(100, 10, $address, 0, 1);
+    $total += $result["price"] * $quantity;
 
-    $pdf->Cell(40, 10, 'Invoice Number:', 0, 0);
-    $pdf->Cell(100, 10, $invoiceNumber, 0, 1);
-
-    $pdf->Cell(40, 10, 'Invoice Date:', 0, 0);
-    $pdf->Cell(100, 10, $invoiceDate, 0, 1);
-
-    $pdf->SetFont('Helvetica', 'B', 12);
-    $pdf->Cell(90, 10, 'Item', 1, 0, 'C');
-    $pdf->Cell(30, 10, 'Price', 1, 0, 'C');
-    $pdf->Cell(30, 10, 'Quantity', 1, 0, 'C');
-    $pdf->Cell(40, 10, 'Total', 1, 1, 'C');
-
-    // make list of every product id
-    $productIds = array();
-    $pdf->SetFont('Helvetica', '', 12);
-    foreach ($items as $item) {
-        for ($i = 0; $i < $item['quantity']; $i++) {
-            $productIds[] = $item['id'];
-        }
-        $pdf->Cell(90, 10, $item['name'], 1, 0);
-        $pdf->Cell(30, 10, EURO . ' ' . $item['price'], 1, 0);
-        $pdf->Cell(30, 10, $item['quantity'], 1, 0);
-        $pdf->Cell(40, 10, EURO . ' ' . $item['price'] * $item['quantity'], 1, 1);
-    }
-
-    $productIdsString = implode(',', $productIds);
-
-    $pdf->Cell(120, 10, '', 0, 0);
-    $pdf->Cell(30, 10, 'Subtotal:', 0, 0);
-    $pdf->Cell(40, 10, EURO . ' ' . $subtotal, 0, 1);
-
-    $pdf->Cell(120, 10, '', 0, 0);
-    $pdf->Cell(30, 10, 'BTW (21%):', 0, 0);
-    $pdf->Cell(40, 10, EURO . ' ' . $tax, 0, 1);
-
-    $pdf->SetFont('Helvetica', 'B', 12);
-    $pdf->Cell(120, 10, '', 0, 0);
-    $pdf->Cell(30, 10, 'Total:', 0, 0);
-    $pdf->Cell(40, 10, EURO . ' ' . $total, 0, 1);
-
-    // output PDF to browser
-    $pdf_file = $invoiceNumber . '.pdf';
-    $pdf->Output('F', '../../orders/' . $pdf_file);
-
-    if (!($method == "paypal")) {
-        echo '
-        <div class="card">
-            <h2>Order placed</h2>
-            <p>Your order has been placed successfully. You can download your invoice <a href="../../orders/' . $pdf_file . '" target="_blank">here</a>.</p>
-            <p>Order ID: ' . $invoiceNumber . '</p>
-            <p>Order date: ' . $invoiceDate . '</p>
-            <p>Order address: ' . $address . '</p>
-        </div>
-        ';
-    }
-
-    $pdf_data = file_get_contents('../../orders/' . $invoiceNumber . '.pdf');
-    $pdf_data = mysqli_real_escape_string($connection, $pdf_data);
-
-
-    $sql = "INSERT INTO orders (id, user, products, status, pdf, date_added) VALUES ('" . $invoiceNumber . "', '" . $_SESSION["userid"] . "', '" . $productIdsString . "', 0, '" . $pdf_data . "', default)";
-    $connection->query($sql);
+    array_push($products_info, $product_info);
 }
+
+generateInvoicePDF($userResult["username"], $order_id, Date("Y-m-d"), $products_info, $total);
+?>
+</body>
+</html>

@@ -26,7 +26,7 @@ if (!(isset($_SESSION["user"]))) {
             </div>
             <div class="links">
                 <!-- <ul>
-                    <li>Links 1</li> <!-- make links 
+                    <li>Links 1</li>  make links 
                     <li>Links 2</li>
                 </ul> -->
             </div>
@@ -48,38 +48,45 @@ if (!(isset($_SESSION["user"]))) {
             </div>
         </div>
         <?php
-        $sql = 'SELECT * FROM orders WHERE id = ?';
+        $sql = 'SELECT * FROM users WHERE id = ?';
         $statement = $connection->prepare($sql);
-        if (!$statement) {
-            echo "Error preparing statement: " . $connection->error;
-        } else {
-            $statement->bind_param('i', $id);
-            $statement->execute();
-            // ...
-        }
+        $statement->bind_param("i", $_SESSION["user"]);
+        $statement->execute();
 
         $resultSet = $statement->get_result();
         $result = $resultSet->fetch_assoc();
 
-        if ($result["cart"] === "") {
-            echo 'No products';
+        if ($resultSet->num_rows < 0) {
+            echo '<p>No products in the cart :/</p>';
         } else {
             $products = explode(",", $result["cart"]);
             $productsCount = array_count_values($products);
 
             foreach ($productsCount as $product => $quantity) {
-                $sql = 'SELECT * FROM products WHERE id = ?';
-                $statement = $connection->prepare($sql);
-                $statement->bind_param("i", $product);
-                $statement->execute();
+                $sql2 = 'SELECT * FROM products WHERE id = ?';
+                $statement2 = $connection->prepare($sql2);
+                $statement2->bind_param("i", $product);
+                $statement2->execute();
 
-                $resultSet2 = $statement->get_result();
-                $result2 = $resultSet->fetch_assoc();
+
+                $resultSet2 = $statement2->get_result();
+                $result2 = $resultSet2->fetch_assoc();
+                
+                echo '
+                <div class="product">
+                    <p>'        . $result2["productname"] . '</p>
+                    <img src="' . $result2["image"] . '" alt="">
+                    <p>'        . $result2["description"] . '</p>
+                    <p>'        . $result2["price"] . '</p>        
+                </div>
+                <p>'. $quantity .'</p>';
             }
         }
         ?>
     </div>
-
+        <form action="../includes/checkout.inc.php" method="post">
+            <input type="submit" name="checkout" value="Checkout">
+        </form>
 </body>
 
 </html>
