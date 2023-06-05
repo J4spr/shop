@@ -55,8 +55,8 @@ if (!(isset($_SESSION["user"]))) {
 
         $resultSet = $statement->get_result();
         $result = $resultSet->fetch_assoc();
-
-        if ($resultSet->num_rows < 0) {
+        // var_dump($result);
+        if ($result["cart"] === "") {
             echo '<p>No products in the cart :/</p>';
         } else {
             $products = explode(",", $result["cart"]);

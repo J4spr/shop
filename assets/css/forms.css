@@ -3,6 +3,11 @@ body {
   color: #ffffff;
 }
 
+.navigation a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .form-wrapper {
   display: flex;
   height: 100vh;

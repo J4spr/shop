@@ -39,7 +39,7 @@ session_start();
                     ';
                 } else {
                     echo '
-                    <a href="../includes/logout.inc.php">Logout</a>t
+                    <a href="../includes/logout.inc.php">Logout</a>
                     ';
                 }
                 ?>

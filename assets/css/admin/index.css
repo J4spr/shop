@@ -8,6 +8,11 @@ body {
   color: #ffffff;
 }
 
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .content {
   height: 100vh;
   display: flex;
